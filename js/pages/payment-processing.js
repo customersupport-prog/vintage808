@@ -1,4 +1,4 @@
-const API = 'https://vintage808-api.vercel.app/api';
+const API = 'https://vintage808-api-six.vercel.app/api';
 
 const params    = new URLSearchParams(window.location.search);
 const reference = params.get('trxref') || params.get('reference')

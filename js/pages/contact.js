@@ -1,6 +1,6 @@
 // js/pages/contact.js
 
-const API = 'https://vintage808-api.vercel.app';
+const API = 'https://vintage808-api-six.vercel.app';
 
 const form = document.getElementById('contact-form');
 

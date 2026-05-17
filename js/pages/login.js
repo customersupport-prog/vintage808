@@ -1,7 +1,7 @@
 // js/pages/login.js
 import { login, register, GOOGLE_CLIENT_ID } from '../api/auth.js';
 
-const API = 'https://vintage808-api.vercel.app';
+const API = 'https://vintage808-api-six.vercel.app';
 
 // ── If already logged in, skip ────────────────────────────────
 if (localStorage.getItem('v808_token')) {

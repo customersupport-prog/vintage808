@@ -4,7 +4,7 @@
    Import this in every account page module.
    ============================================================ */
 
-export const API   = 'https://vintage808-api.vercel.app';
+export const API   = 'https://vintage808-api-six.vercel.app';
 export const token = localStorage.getItem('v808_token');
 
 // ── Auth guard — redirect to login if no token ────────────────

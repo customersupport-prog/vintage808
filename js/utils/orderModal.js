@@ -2,7 +2,7 @@
 // ─── Order detail modal — used by account.js ─────────────────
 import { esc, fmtDate, fmtCurrency, fmtStatus, badgeClass, $ } from '../utils/format.js';
 
-const API = 'https://vintage808-api.vercel.app';
+const API = 'https://vintage808-api-six.vercel.app';
 
 const STATUS_STEPS = ['confirmed', 'processing', 'shipped', 'delivered'];
 

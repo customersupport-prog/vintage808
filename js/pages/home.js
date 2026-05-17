@@ -35,7 +35,7 @@ export async function renderFeaturedProducts() {
 
 const API_BASE_URL = window.location.hostname === 'localhost'
   ? 'http://localhost:5000/'
-  : 'https://vintage808-api.vercel.app/';
+  : 'https://vintage808-api-six.vercel.app/';
 
 const input = document.querySelector('.newsletter-input');
 const btn   = document.querySelector('.btn-subscribe');
