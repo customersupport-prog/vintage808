@@ -4,7 +4,7 @@
 import axios from 'https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/esm/axios.min.js';
 
 const api = axios.create({
-  baseURL: 'https://vintage808-api-six.vercel.app//api',
+  baseURL: 'https://vintage808-api-six.vercel.app/api',
   headers: {
     'Content-Type': 'application/json',
   },
