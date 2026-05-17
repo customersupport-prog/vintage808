@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign In — Vintage808</title>
+<meta name="description" content="Sign in or create your Vintage808 account." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/pages/login.css" />
+  <script src="https://accounts.google.com/gsi/client" async onload="window.onGoogleLibraryLoad?.()"></script>
+</head>
+<body data-page="login">
+
+<main class="auth-page">
+
+  <!-- ══ LEFT: BRAND PANEL ══ -->
+  <div class="auth-brand">
+    <div class="auth-x auth-x--tl"></div>
+    <div class="auth-x auth-x--br"></div>
+    <div class="auth-brand-inner">
+      <a href="./index.html">
+        <img src="./assets/logos/logo3.png" alt="Vintage808" class="auth-brand-logo" />
+      </a>
+      <p class="auth-brand-tagline">Custom streetwear<br/>for every day.</p>
+      <p class="auth-brand-sub">Quality tees, and shorts built for your style — designed and shipped with care.</p>
+      <div class="auth-brand-pills">
+        <span class="auth-brand-pill"><span class="auth-brand-pill-dot"></span>Free shipping R1000+</span>
+        <span class="auth-brand-pill"><span class="auth-brand-pill-dot"></span>Custom sizing</span>
+        <span class="auth-brand-pill"><span class="auth-brand-pill-dot"></span>SA made</span>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- ══ RIGHT: FORM SIDE ══ -->
+  <div class="auth-form-side">
+
+    <!-- LOGIN -->
+    <div class="auth-form-wrap" id="panel-login">
+      <p class="auth-eyebrow">Welcome back</p>
+      <h1 class="auth-heading">Sign in</h1>
+      <p class="auth-desc">Good to see you again. Jump back in.</p>
+
+      <div class="auth-error" id="login-error" style="display:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="login-error-msg">Invalid email or password.</span>
+      </div>
+
+      <div class="auth-fields">
+        <div class="auth-field">
+          <label class="auth-label" for="login-email">Email</label>
+          <input class="auth-input" type="email" id="login-email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="auth-field">
+          <label class="auth-label" for="login-password">
+            Password
+            <button type="button" class="auth-forgot" id="forgot-password-btn">Forgot password?</button>
+          </label>
+          <div class="auth-input-wrap">
+            <input class="auth-input" type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+            <button class="auth-toggle-pw" id="login-toggle-pw" type="button" aria-label="Show password">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button class="auth-btn" id="login-btn">
+        <span id="login-btn-text">Sign in</span>
+        <span id="login-btn-loader" style="display:none;">
+          <svg class="auth-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </span>
+      </button>
+
+      <div class="auth-divider"><span>or</span></div>
+      <div id="google-signin-btn" class="google-sdk-wrap"></div>
+
+      <p class="auth-switch">
+        Don't have an account?
+        <button type="button" class="auth-switch-btn" id="go-to-register">Create one</button>
+      </p>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="auth-form-wrap auth-form-wrap--hidden" id="panel-register">
+      <p class="auth-eyebrow">Join us</p>
+      <h1 class="auth-heading">Create account</h1>
+      <p class="auth-desc">Set up your Vintage808 account in seconds.</p>
+
+      <div class="auth-error" id="register-error" style="display:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="register-error-msg">Something went wrong.</span>
+      </div>
+
+      <div class="auth-fields">
+        <div class="auth-fields-row">
+          <div class="auth-field">
+            <label class="auth-label" for="reg-first">First name</label>
+            <input class="auth-input" type="text" id="reg-first" placeholder="John" autocomplete="given-name" />
+          </div>
+          <div class="auth-field">
+            <label class="auth-label" for="reg-last">Last name</label>
+            <input class="auth-input" type="text" id="reg-last" placeholder="Doe" autocomplete="family-name" />
+          </div>
+        </div>
+        <div class="auth-field">
+          <label class="auth-label" for="reg-email">Email</label>
+          <input class="auth-input" type="email" id="reg-email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="auth-field">
+          <label class="auth-label" for="reg-password">Password</label>
+          <div class="auth-input-wrap">
+            <input class="auth-input" type="password" id="reg-password" placeholder="Min. 8 characters" autocomplete="new-password" />
+            <button class="auth-toggle-pw" id="reg-toggle-pw" type="button" aria-label="Show password">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="pw-strength">
+            <div class="pw-bar" id="pw-b0"></div>
+            <div class="pw-bar" id="pw-b1"></div>
+            <div class="pw-bar" id="pw-b2"></div>
+            <div class="pw-bar" id="pw-b3"></div>
+          </div>
+        </div>
+        <div class="auth-field">
+          <label class="auth-label" for="reg-confirm">Confirm password</label>
+          <div class="auth-input-wrap">
+            <input class="auth-input" type="password" id="reg-confirm" placeholder="Repeat password" autocomplete="new-password" />
+            <button class="auth-toggle-pw" id="reg-toggle-confirm" type="button" aria-label="Show password">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button class="auth-btn" id="register-btn">
+        <span id="register-btn-text">Create account</span>
+        <span id="register-btn-loader" style="display:none;">
+          <svg class="auth-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </span>
+      </button>
+
+      <div class="auth-divider"><span>or</span></div>
+      <div id="google-signin-btn-register" class="google-sdk-wrap"></div>
+
+      <p class="auth-switch">
+        Already have an account?
+        <button type="button" class="auth-switch-btn" id="go-to-login">Sign in</button>
+      </p>
+    </div>
+
+    <!-- FORGOT PASSWORD -->
+    <div class="auth-form-wrap auth-form-wrap--hidden" id="panel-forgot">
+      <p class="auth-eyebrow">Reset password</p>
+      <h1 class="auth-heading">Forgot password?</h1>
+      <p class="auth-sub">Enter your email and we'll send you a 6-digit code.</p>
+
+      <div class="auth-error" id="forgot-error" style="display:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="forgot-error-msg">Something went wrong.</span>
+      </div>
+
+      <div class="auth-fields">
+        <div class="auth-field">
+          <label class="auth-label" for="forgot-email">Email</label>
+          <input class="auth-input" type="email" id="forgot-email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+      </div>
+
+      <button class="auth-btn" id="forgot-btn">
+        <span id="forgot-btn-text">Send code</span>
+        <span id="forgot-btn-loader" style="display:none;">
+          <svg class="auth-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </span>
+      </button>
+
+      <p class="auth-switch">
+        <button type="button" class="auth-switch-btn" id="back-to-login-from-forgot">← Back to sign in</button>
+      </p>
+    </div>
+
+    <!-- OTP -->
+    <div class="auth-form-wrap auth-form-wrap--hidden" id="panel-otp">
+      <p class="auth-eyebrow">Verification</p>
+      <h1 class="auth-heading">Enter code</h1>
+      <p class="auth-sub" id="otp-sub">We sent a 6-digit code to your email.</p>
+
+      <div class="auth-error" id="otp-error" style="display:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="otp-error-msg">Invalid code.</span>
+      </div>
+
+      <div class="auth-fields">
+        <div class="auth-field">
+          <label class="auth-label" for="otp-input">6-digit code</label>
+          <input class="auth-input auth-input--otp" type="text" id="otp-input" placeholder="000000" maxlength="6" autocomplete="one-time-code" inputmode="numeric" />
+        </div>
+      </div>
+
+      <button class="auth-btn" id="otp-btn">
+        <span id="otp-btn-text">Verify code</span>
+        <span id="otp-btn-loader" style="display:none;">
+          <svg class="auth-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </span>
+      </button>
+
+      <p class="auth-switch">
+        <button type="button" class="auth-switch-btn" id="back-to-forgot">← Back</button>
+      </p>
+    </div>
+
+    <!-- NEW PASSWORD -->
+    <div class="auth-form-wrap auth-form-wrap--hidden" id="panel-reset">
+      <p class="auth-eyebrow">Almost done</p>
+      <h1 class="auth-heading">New password</h1>
+      <p class="auth-sub">Choose a strong password for your account.</p>
+
+      <div class="auth-error" id="reset-error" style="display:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="reset-error-msg">Something went wrong.</span>
+      </div>
+
+      <div class="auth-success" id="reset-success" style="display:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Password reset! Redirecting to sign in...
+      </div>
+
+      <div class="auth-fields">
+        <div class="auth-field">
+          <label class="auth-label" for="reset-password">New password</label>
+          <div class="auth-input-wrap">
+            <input class="auth-input" type="password" id="reset-password" placeholder="Min. 8 characters" autocomplete="new-password" />
+            <button class="auth-toggle-pw" id="reset-toggle-pw" type="button" aria-label="Show password">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="auth-field">
+          <label class="auth-label" for="reset-confirm">Confirm password</label>
+          <div class="auth-input-wrap">
+            <input class="auth-input" type="password" id="reset-confirm" placeholder="Repeat password" autocomplete="new-password" />
+            <button class="auth-toggle-pw" id="reset-toggle-confirm" type="button" aria-label="Show password">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button class="auth-btn" id="reset-btn">
+        <span id="reset-btn-text">Reset password</span>
+        <span id="reset-btn-loader" style="display:none;">
+          <svg class="auth-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </span>
+      </button>
+    </div>
+
+  </div><!-- /.auth-form-side -->
+</main>
+
+<script type="module" src="./js/main.js" defer></script>
+<script type="module" src="./js/pages/login.js" defer></script>
+</body>
+</html>

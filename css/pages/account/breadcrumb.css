@@ -1,0 +1,50 @@
+/* ============================================================
+   Vintage808 — breadcrumb.css
+   ============================================================ */
+
+.account-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px 20px;
+  max-width: 1060px;
+  margin: 0 auto;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.account-breadcrumb-home {
+  color: var(--acc-mid);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 0.15s;
+  cursor: pointer;
+}
+
+.account-breadcrumb-home:hover { color: var(--acc-black); }
+
+.account-breadcrumb-sep {
+  color: var(--acc-mid);
+  font-size: 11px;
+}
+
+.account-breadcrumb-current {
+  color: var(--acc-black);
+  font-weight: 600;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .account-breadcrumb {
+    padding: 0 16px 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .account-breadcrumb {
+    padding: 0 12px 12px;
+    font-size: 11px;
+  }
+}

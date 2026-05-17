@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipping & Delivery — Vintage808</title>
+  <meta name="description" content="Vintage808 shipping and delivery information — timelines, costs, and tracking." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <style>
+    :root {
+      --black: #111111; --white: #ffffff; --sand: #ede9e3; --sand2: #f7f5f2;
+      --mid: #999186; --accent: #d4006b;
+      --font-display: 'DM Serif Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--sand2); color: var(--black); -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .legal-hero { background: var(--black); padding: 72px 40px 56px; text-align: center; }
+    .legal-hero-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--mid); margin-bottom: 14px; }
+    .legal-hero h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 400; color: var(--white); letter-spacing: -.02em; }
+    .legal-hero-sub { margin-top: 14px; font-size: 13px; color: var(--mid); }
+    .legal-body { max-width: 760px; margin: 0 auto; padding: 64px 24px 100px; }
+    .legal-toc { background: var(--white); border: 1px solid #e8e4de; border-radius: 6px; padding: 24px 28px; margin-bottom: 56px; }
+    .legal-toc-title { font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mid); margin-bottom: 14px; }
+    .legal-toc ol { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+    .legal-toc li { font-size: 13px; }
+    .legal-toc a { color: var(--black); font-weight: 500; }
+    .legal-toc a:hover { color: var(--accent); text-decoration: none; }
+    .legal-section { margin-bottom: 52px; }
+    .legal-section-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .legal-section h2 { font-family: var(--font-display); font-size: clamp(20px, 3vw, 26px); font-weight: 400; letter-spacing: -.01em; color: var(--black); margin-bottom: 18px; }
+    .legal-section p { font-size: 14px; line-height: 1.85; color: #444; margin-bottom: 14px; }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section ul, .legal-section ol { padding-left: 20px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .legal-section li { font-size: 14px; line-height: 1.75; color: #444; }
+    .legal-highlight { background: var(--white); border: 1px solid #e8e4de; border-left: 4px solid var(--accent); border-radius: 4px; padding: 18px 20px; margin: 20px 0; }
+    .legal-highlight p { margin: 0; font-size: 13px; line-height: 1.75; color: #444; }
+    .legal-highlight strong { color: var(--black); }
+    .legal-divider { height: 1px; background: #e8e4de; margin: 52px 0; }
+    .legal-contact-card { background: var(--black); color: var(--white); border-radius: 6px; padding: 32px 36px; margin-top: 52px; }
+    .legal-contact-card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+    .legal-contact-card p { font-size: 14px; color: #aaa; line-height: 1.8; margin-bottom: 0; }
+    .legal-contact-card a { color: var(--accent); }
+
+    /* Shipping table */
+    .shipping-table { width: 100%; border-collapse: collapse; margin: 20px 0 14px; font-size: 13px; }
+    .shipping-table thead tr { background: var(--black); color: var(--white); }
+    .shipping-table thead th { padding: 12px 16px; text-align: left; font-weight: 500; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-family: var(--font-mono); }
+    .shipping-table tbody tr { border-bottom: 1px solid #e8e4de; }
+    .shipping-table tbody tr:last-child { border-bottom: none; }
+    .shipping-table tbody tr:nth-child(even) { background: var(--white); }
+    .shipping-table td { padding: 12px 16px; color: #444; line-height: 1.6; }
+    .shipping-table td strong { color: var(--black); font-weight: 600; }
+    .badge { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; font-weight: 500; }
+    .badge-free { background: #e8f5e9; color: #2e7d32; }
+
+    @media (max-width: 600px) {
+      .legal-hero { padding: 48px 20px 40px; }
+      .legal-body { padding: 40px 16px 72px; }
+      .shipping-table { font-size: 12px; }
+      .shipping-table thead th, .shipping-table td { padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <a href="./index.html" class="nav-logo"><img src="./assets/logos/logo.png" alt="Vintage808" /></a>
+  <ul class="nav-links">
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-icons">
+      <div class="cart-wrap">
+        <button class="nav-icon-btn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </button>
+        <span class="cart-badge" style="display:none;">0</span>
+      </div>
+      <button class="nav-icon-btn" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </button>
+    </div>
+    <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Mobile Drawer ── -->
+<div class="nav-drawer" aria-hidden="true">
+  <ul class="nav-drawer-links">
+     <li><a href="./index.html">Home</a></li>
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./account.html">Account</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+ <div class="nav-drawer-bottom">
+  <div class="nav-drawer-icons">
+    <button class="nav-drawer-icon-btn" aria-label="Cart">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Cart <span class="drawer-badge" style="display:none;">0</span>
+    </button>
+    <button class="nav-drawer-icon-btn" aria-label="Account">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Account
+    </button>
+  </div>
+
+  <!-- Sign out — only shown when logged in -->
+  <button id="drawer-logout-btn" style="display:none;width:100%;margin:12px 0 4px;padding:11px 16px;background:none;border:1px solid #e8e4de;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#111;cursor:pointer;text-align:left;gap:8px;align-items:center;">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    Sign out
+  </button>
+
+
+</div>
+</div>
+
+<!-- Cart Overlay -->
+<div id="cart-overlay"></div>
+
+<!-- Cart Drawer -->
+<aside id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h2 class="cart-drawer-title">Your cart</h2>
+    <button id="cart-drawer-close" aria-label="Close cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body">
+    <div class="cart-empty"><p>Your cart is empty</p></div>
+  </div>
+  <div class="cart-drawer-footer" id="cart-drawer-footer" style="display:none;">
+    <div class="cart-drawer-subtotal">
+      <span>Subtotal</span>
+      <span id="cart-drawer-total">R0.00</span>
+    </div>
+    <p class="cart-shipping-note">Shipping calculated at checkout</p>
+    <a href="./checkout.html" class="btn-checkout">Checkout</a>
+  </div>
+</aside>
+
+<!-- ── Hero ── -->
+<div class="legal-hero">
+  <div class="legal-hero-eyebrow">Vintage808 · Help</div>
+  <h1>Shipping & Delivery</h1>
+  <p class="legal-hero-sub">Last updated: May 2026 · We deliver across South Africa</p>
+</div>
+
+<div class="legal-body">
+
+  <div class="legal-toc">
+    <div class="legal-toc-title">Contents</div>
+    <ol>
+      <li><a href="#processing">Order processing</a></li>
+      <li><a href="#rates">Shipping rates &amp; timelines</a></li>
+      <li><a href="#tracking">Tracking your order</a></li>
+      <li><a href="#delivery">Delivery &amp; collection</a></li>
+      <li><a href="#failed">Failed &amp; missed deliveries</a></li>
+      <li><a href="#lost">Lost or damaged parcels</a></li>
+      <li><a href="#restrictions">Shipping restrictions</a></li>
+      <li><a href="#contact">Contact us</a></li>
+    </ol>
+  </div>
+
+  <!-- 01 -->
+  <div class="legal-section" id="processing">
+    <div class="legal-section-num">01</div>
+    <h2>Order Processing</h2>
+    <p>Orders are processed on business days (Monday – Friday, excluding South African public holidays). Orders placed before <strong>12:00 PM (noon)</strong> are typically dispatched the same day. Orders placed after 12:00 PM are dispatched the following business day.</p>
+    <p>You will receive an order confirmation email immediately after placing your order, followed by a dispatch notification with your tracking number once your parcel has been collected by our courier.</p>
+    <div class="legal-highlight">
+      <p><strong>Please note:</strong> During sale periods, new product launches, or public holidays, processing times may be extended by 1–2 business days. We will communicate any delays via email.</p>
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="legal-section" id="rates">
+    <div class="legal-section-num">02</div>
+    <h2>Shipping Rates &amp; Timelines</h2>
+    <p>We currently ship to all provinces within South Africa. A flat shipping rate applies to all orders, with free shipping on orders over R1000.</p>
+
+    <table class="shipping-table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Estimated Delivery</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Standard Courier</strong><br/>Door-to-door, major centres</td>
+          <td>2 – 4 business days</td>
+          <td><strong>R150</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Standard Courier</strong><br/>Outlying / rural areas</td>
+          <td>3 – 6 business days</td>
+          <td><strong>R150</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Free Shipping</strong><br/>All orders over R1000</td>
+          <td>2 – 4 business days</td>
+          <td><span class="badge badge-free">Free</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Delivery timelines are estimates and begin from the date of dispatch, not the date of order. Delays may occur due to courier capacity, weather, or other factors outside our control.</p>
+  </div>
+
+  <!-- 03 -->
+  <div class="legal-section" id="tracking">
+    <div class="legal-section-num">03</div>
+    <h2>Tracking Your Order</h2>
+    <p>Once your order has been dispatched, you will receive an email containing your waybill (tracking) number and a link to track your parcel in real time on the courier's website.</p>
+    <p>You can also track your order from your <a href="./account.html">Vintage808 account</a> under <strong>My Orders</strong>.</p>
+    <p>If you have not received a tracking number within 2 business days of placing your order, please contact us at <a href="mailto:customersupport@vintage808info.com">customersupport@vintage808info.com</a>.</p>
+  </div>
+
+  <!-- 04 -->
+  <div class="legal-section" id="delivery">
+    <div class="legal-section-num">04</div>
+    <h2>Delivery &amp; Collection</h2>
+    <p>For door-to-door deliveries, someone must be available to receive the parcel at the delivery address. Our courier will attempt delivery during standard business hours (08:00 – 17:00, Monday to Friday).</p>
+    <p>If no one is available to receive the parcel, the courier will leave a notification card and attempt re-delivery. Please ensure your delivery address and contact number are correct when placing your order.</p>
+  </div>
+
+  <!-- 05 -->
+  <div class="legal-section" id="failed">
+    <div class="legal-section-num">05</div>
+    <h2>Failed &amp; Missed Deliveries</h2>
+    <p>If a delivery attempt fails and the parcel is returned to us, we will contact you to arrange re-delivery. Please note that a re-delivery fee may apply.</p>
+    <p>If a parcel is returned due to an incorrect address provided by the customer, the customer will be responsible for the cost of re-delivery.</p>
+    <p>Parcels that cannot be delivered and are not reclaimed within 14 days of the return date will be treated in accordance with our <a href="./returns.html">Returns Policy</a>.</p>
+  </div>
+
+  <!-- 06 -->
+  <div class="legal-section" id="lost">
+    <div class="legal-section-num">06</div>
+    <h2>Lost or Damaged Parcels</h2>
+    <p>In the unlikely event that your parcel is lost or arrives damaged, please contact us within <strong>48 hours of the expected delivery date</strong> at <a href="mailto:customersupport@vintage808info.com">customersupport@vintage808info.com</a> with your order number and a description of the issue.</p>
+    <p>For damaged items, please include clear photographs of the packaging and the item(s) received. We will investigate with the courier and, where applicable, arrange a replacement or refund.</p>
+    <div class="legal-highlight">
+      <p><strong>Important:</strong> Claims for lost or damaged parcels must be submitted within 48 hours of the expected delivery date. Claims submitted after this period may not be eligible for replacement or refund.</p>
+    </div>
+  </div>
+
+  <!-- 07 -->
+  <div class="legal-section" id="restrictions">
+    <div class="legal-section-num">07</div>
+    <h2>Shipping Restrictions</h2>
+    <p>We currently ship <strong>within South Africa only</strong>. We do not offer international shipping at this time. We hope to expand our delivery reach in the future.</p>
+    <p>Some remote or outlying areas may have extended delivery timelines. If you are unsure whether your area is serviced, please contact us before placing your order.</p>
+  </div>
+
+  <div class="legal-divider"></div>
+
+  <div class="legal-contact-card" id="contact">
+    <h3>Questions about your delivery?</h3>
+    <p>
+      Our support team is happy to help. Reach us at <a href="mailto:customersupport@vintage808info.com">customersupport@vintage808info.com</a> with your order number and we'll get back to you within 1 business day.<br/><br/>
+      You can also check your order status any time from your <a href="./account.html">account page</a>.
+    </p>
+  </div>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="./shop.html">All items</a></li>
+        <li><a href="./shop.html">T-shirt</a></li>
+        <li><a href="./shop.html">Shorts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Company</p>
+      <ul class="footer-links">
+        
+        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./contact.html">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Help</p>
+      <ul class="footer-links">
+        <li><a href="./faq.html">FAQ</a></li>
+        <li><a href="./shipping.html">Shipping info</a></li>
+        <li><a href="#">Size guide</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Legal</p>
+      <ul class="footer-links">
+        <li><a href="./privacy.html">Privacy policy</a></li>
+        <li><a href="./terms.html">Terms policy</a></li>
+        <li><a href="#">Cookie policy</a></li>
+        <li><a href="./returns.html">Returns</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Follow Us</p>
+      <ul class="social-links">
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>Facebook</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>Instagram</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>X</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── Business registration (compliance) ── -->
+  <div class="footer-legal-strip">
+    <p>
+      Vintage 808 (Pty) Ltd &nbsp;·&nbsp;
+      Registration No. <strong>2026/226981/07</strong> &nbsp;·&nbsp;
+      Tax No. <strong>9260034286</strong> &nbsp;·&nbsp;
+      L1268 Corner Kick Way, Umlazi, KwaZulu-Natal, 4031, South Africa
+    </p>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Vintage808. All rights reserved.</span>
+    <span>Made in South Africa 🇿🇦</span>
+  </div>
+</footer>
+
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

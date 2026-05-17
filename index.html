@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Vintage808 — Premium streetwear built for every day. Tees, shorts and more. Free shipping over R1000." />
+<meta name="keywords" content="streetwear, vintage, tees, shorts, south africa, online store" />
+<title>Shop — Vintage808</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./css/pages/home.css" />
+<link rel="stylesheet" href="./css/components.css">
+<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/skeleton.css">
+</head>
+<body data-page="home">
+
+
+<!-- ── Navigation ── -->
+<nav>
+  <a href="./index.html" class="nav-logo"><img src="./assets/logos/logo.png" alt="Vintage808" /></a>
+  <ul class="nav-links">
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-icons">
+      <div class="cart-wrap">
+        <button class="nav-icon-btn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </button>
+        <span class="cart-badge" style="display:none;">0</span>
+      </div>
+      <button class="nav-icon-btn" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </button>
+    </div>
+    <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<!-- ── Mobile Drawer ── -->
+<div class="nav-drawer" aria-hidden="true">
+  <ul class="nav-drawer-links">
+     <li><a href="./index.html">Home</a></li>
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./account.html">Account</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+ <div class="nav-drawer-bottom">
+  <div class="nav-drawer-icons">
+    <button class="nav-drawer-icon-btn" aria-label="Cart">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Cart <span class="drawer-badge" style="display:none;">0</span>
+    </button>
+    <button class="nav-drawer-icon-btn" aria-label="Account">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Account
+    </button>
+  </div>
+
+  <!-- Sign out — only shown when logged in -->
+  <button id="drawer-logout-btn" style="display:none;width:100%;margin:12px 0 4px;padding:11px 16px;background:none;border:1px solid #e8e4de;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#111;cursor:pointer;text-align:left;gap:8px;align-items:center;">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    Sign out
+  </button>
+
+
+</div>
+</div>
+
+<!-- Cart Overlay -->
+<div id="cart-overlay"></div>
+
+<!-- Cart Drawer -->
+<aside id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h2 class="cart-drawer-title">Your cart</h2>
+    <button id="cart-drawer-close" aria-label="Close cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body">
+    <div class="cart-empty"><p>Your cart is empty</p></div>
+  </div>
+  <div class="cart-drawer-footer" id="cart-drawer-footer" style="display:none;">
+    <div class="cart-drawer-subtotal">
+      <span>Subtotal</span>
+      <span id="cart-drawer-total">R0.00</span>
+    </div>
+    <p class="cart-shipping-note">Shipping calculated at checkout</p>
+    <a href="./checkout.html" class="btn-checkout">Checkout</a>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════════════
+     HERO — Full screen, bold, cinematic
+══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="./assets/images/hero.jpg" alt="" class="hero-bg-img" />
+  <div class="hero-bg-overlay"></div>
+   
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-dot"></span>
+      Summer Collection 2025
+    </div>
+    <h1 class="hero-heading">
+      Wear the<br/>
+      <span class="hero-heading-accent">street.</span>
+    </h1>
+    <p class="hero-body">Premium streetwear built for every day. Tees, shorts and more — drop-fresh quality at honest prices.</p>
+    <div class="hero-actions">
+      <a href="./shop.html" class="btn-hero-primary">Shop the collection</a>
+      <a href="#featured" class="btn-hero-ghost">See what's new</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     MARQUEE TICKER
+══════════════════════════════════════════════ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>New Summer Drops</span><span class="ticker-sep">—</span>
+    <span>Premium Quality</span><span class="ticker-sep">—</span>
+    <span>Free Shipping Over R1000</span><span class="ticker-sep">—</span>
+    <span>Limited Stock</span><span class="ticker-sep">—</span>
+    <span>New Summer Drops</span><span class="ticker-sep">—</span>
+    <span>Premium Quality</span><span class="ticker-sep">—</span>
+    <span>Free Shipping Over R1000</span><span class="ticker-sep">—</span>
+    <span>Limited Stock</span><span class="ticker-sep">—</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CATEGORIES — 2 big editorial tiles
+══════════════════════════════════════════════ -->
+<section class="editorial-section">
+  <div class="editorial-header">
+    <p class="eyebrow">Shop by Category</p>
+    <h2 class="editorial-title">Pick your style</h2>
+  </div>
+  <div class="editorial-grid">
+    <a href="./shop.html?cat=tshirts" class="editorial-card">
+      <div class="editorial-card-bg editorial-card-bg--tees">
+        <img src="https://res.cloudinary.com/douuewtqc/image/upload/v1777474579/vintage808/products/blqijr3gwoawlhjvwva2.jpg" alt="Tees" loading="lazy">
+      </div>
+      <div class="editorial-card-content">
+        <p class="editorial-card-eyebrow">Collection</p>
+        <h3 class="editorial-card-title">Tees</h3>
+        <span class="editorial-card-link">Shop now →</span>
+      </div>
+    </a>
+    <a href="./shop.html?cat=shorts" class="editorial-card">
+      <div class="editorial-card-bg editorial-card-bg--shorts">
+       <img src="https://res.cloudinary.com/douuewtqc/image/upload/q_auto/f_auto/v1777315094/e4d51db7_gr8id7.jpg" alt="vintage  short" loading="lazy">
+      </div>
+      <div class="editorial-card-content">
+        <p class="editorial-card-eyebrow">Collection</p>
+        <h3 class="editorial-card-title">Shorts</h3>
+        <span class="editorial-card-link">Shop now →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FEATURED PRODUCTS
+══════════════════════════════════════════════ -->
+<section class="featured-section" id="featured">
+  <div class="featured-header">
+    <div>
+      <p class="eyebrow">Just dropped</p>
+      <h2 class="featured-title">Featured picks</h2>
+    </div>
+    <a href="./shop.html" class="featured-see-all">View all
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </div>
+    <div class="product-grid" id="product-grid"></div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     BRAND STATEMENT — Full bleed dark
+══════════════════════════════════════════════ -->
+<section class="statement-section">
+  <div class="statement-inner">
+    <p class="eyebrow eyebrow--light">Our philosophy</p>
+    <h2 class="statement-heading">Quality over<br/><em>everything.</em></h2>
+    <p class="statement-body">We don't do fast fashion. Every piece is designed to last — made from premium fabrics, cut for comfort, and styled for the streets.</p>
+    <a href="./shop.html" class="btn-statement">Shop the range</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FEATURES STRIP
+══════════════════════════════════════════════ -->
+<section class="features-strip">
+  <div class="feature-item">
+    <div class="feature-icon">🚚</div>
+    <div>
+      <p class="feature-title">Fast delivery</p>
+      <p class="feature-sub">Nationwide shipping</p>
+    </div>
+  </div>
+  <div class="feature-divider"></div>
+  <div class="feature-item">
+    <div class="feature-icon">📦</div>
+    <div>
+      <p class="feature-title">Free returns</p>
+      <p class="feature-sub">14 days, no questions</p>
+    </div>
+  </div>
+  <div class="feature-divider"></div>
+  <div class="feature-item">
+    <div class="feature-icon">🔒</div>
+    <div>
+      <p class="feature-title">Secure checkout</p>
+      <p class="feature-sub">Your data is safe</p>
+    </div>
+  </div>
+  <div class="feature-divider"></div>
+  <div class="feature-item">
+    <div class="feature-icon">♻️</div>
+    <div>
+      <p class="feature-title">Sustainable</p>
+      <p class="feature-sub">Ethically sourced</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Newsletter ── -->
+<section class="newsletter">
+  <div>
+    <h3 class="newsletter-heading">Stay in the loop</h3>
+    <p class="newsletter-sub">Get updates on new drops and exclusive offers</p>
+  </div>
+  <div class="newsletter-form">
+    <div class="newsletter-row">
+      <input type="email" class="newsletter-input" placeholder="Your email" />
+      <button class="btn-subscribe">Subscribe</button>
+    </div>
+    <p class="newsletter-note">We respect your privacy. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="./shop.html">All items</a></li>
+        <li><a href="./shop.html">T-shirt</a></li>
+        <li><a href="./shop.html">Shorts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Company</p>
+      <ul class="footer-links">
+        
+        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./contact.html">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Help</p>
+      <ul class="footer-links">
+        <li><a href="./faq.html">FAQ</a></li>
+        <li><a href="./shipping.html">Shipping info</a></li>
+        <li><a href="#">Size guide</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Legal</p>
+      <ul class="footer-links">
+        <li><a href="./privacy.html">Privacy policy</a></li>
+        <li><a href="./terms.html">Terms policy</a></li>
+        <li><a href="#">Cookie policy</a></li>
+        <li><a href="./returns.html">Returns</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Follow Us</p>
+      <ul class="social-links">
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>Facebook</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>Instagram</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>X</a></li>
+      </ul>
+    </div>
+  </div>
+
+<!-- ── Business registration (compliance) ── -->
+<div class="footer-legal-strip">
+  <p>
+    Vintage 808 (Pty) Ltd &nbsp;·&nbsp;
+    Registration No. <strong>2026/226981/07</strong> &nbsp;·&nbsp;
+    Tax No. <strong>9260034286</strong> &nbsp;·&nbsp;
+
+  </p>
+</div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Vintage808. All rights reserved.</span>
+    <span>Made in South Africa 🇿🇦</span>
+  </div>
+</footer>
+
+<script type="module" src="./js/main.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  "name": "Vintage808",
+  "url": "https://vintage808.co.za",
+  "logo": "https://vintage808.co.za/images/logo.png",
+  "description": "Premium streetwear built for every day.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "ZA"
+  },
+  "email": "customersupport@vintage808info.com",
+  "currenciesAccepted": "ZAR",
+  "paymentAccepted": "Credit Card, PayFast",
+  "areaServed": "ZA"
+}
+</script>
+</body>
+</html>

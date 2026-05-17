@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed — Vintage808</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <style>
+    .success-page {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+    .success-card {
+      background: #fff;
+      border: 1px solid #e8e4de;
+      border-radius: 12px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .success-icon {
+      width: 56px; height: 56px;
+      background: #f0fdf4;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      color: #16a34a;
+    }
+    .success-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999186;
+      margin-bottom: 8px;
+    }
+    .success-heading {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .success-sub {
+      font-size: 14px;
+      color: #777;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .success-order-id {
+      background: #faf9f7;
+      border: 1px solid #e8e4de;
+      border-radius: 6px;
+      padding: 12px 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: #111;
+      margin-bottom: 32px;
+    }
+    .success-actions {
+      display: flex; gap: 12px; flex-direction: column;
+    }
+    .btn-primary {
+      padding: 13px 20px;
+      background: #111; color: #fff;
+      border: none; border-radius: 6px;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 13px; letter-spacing: 0.04em;
+      cursor: pointer; text-decoration: none;
+      display: block; text-align: center;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: #333; }
+    .btn-secondary {
+      padding: 13px 20px;
+      background: #fff; color: #111;
+      border: 1px solid #e8e4de; border-radius: 6px;
+      font-size: 13px; cursor: pointer;
+      text-decoration: none; display: block; text-align: center;
+      transition: border-color 0.15s;
+    }
+    .btn-secondary:hover { border-color: #aaa; }
+
+    /* Loading state */
+    .verifying {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 16px;
+      color: #777; font-size: 14px;
+    }
+    .spinner {
+      width: 32px; height: 32px;
+      border: 2px solid #e8e4de;
+      border-top-color: #111;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Error state */
+    .error-icon {
+      width: 56px; height: 56px;
+      background: #fef2f2;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      color: #dc2626;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="./index.html" class="nav-logo"><img src="./assets/logos/logo.png" alt="Vintage808" /></a>
+</nav>
+
+<main class="success-page">
+  <div class="success-card" id="success-card">
+    <!-- Filled by JS -->
+    <div class="verifying">
+      <div class="spinner"></div>
+      Verifying your payment…
+    </div>
+  </div>
+</main>
+
+<script type="module">
+  const API = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
+    ? 'http://localhost:5000/api'
+    : 'https://vintage808-api.vercel.app/api';
+
+  const card      = document.getElementById('success-card');
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // Paystack returns ?trxref=xxx&reference=xxx in the callback URL
+  const reference = urlParams.get('reference') || urlParams.get('trxref')
+    || sessionStorage.getItem('v808_paystack_ref');
+
+  async function verify() {
+    if (!reference) {
+      showError('No payment reference found.');
+      return;
+    }
+
+    try {
+      const res  = await fetch(`${API}/paystack/verify`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ reference }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        // Clear cart and session data
+        localStorage.removeItem('v808_cart');
+        sessionStorage.removeItem('v808_pending_order');
+        sessionStorage.removeItem('v808_paystack_ref');
+        sessionStorage.removeItem('v808_paystack_order_id');
+
+        showSuccess(data.order);
+      } else {
+        showError(data.message || 'Payment could not be verified.');
+      }
+    } catch (err) {
+      showError('Could not verify payment. Please check your orders.');
+    }
+  }
+
+  function showSuccess(order) {
+    const orderNum = order?.orderNumber || ('#' + (order?._id || '').slice(-8).toUpperCase());
+    card.innerHTML = `
+      <div class="success-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <p class="success-eyebrow">Payment confirmed</p>
+      <h1 class="success-heading">Order placed!</h1>
+      <p class="success-sub">
+        Thanks for your order. We'll get it ready and send you an update when it ships.
+      </p>
+      <div class="success-order-id">Order ${orderNum}</div>
+      <div class="success-actions">
+        <a href="./account.html?tab=orders" class="btn-primary">View my orders</a>
+        <a href="./shop.html" class="btn-secondary">Continue shopping</a>
+      </div>
+    `;
+  }
+
+  function showError(msg) {
+    card.innerHTML = `
+      <div class="error-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+        </svg>
+      </div>
+      <p class="success-eyebrow">Payment issue</p>
+      <h1 class="success-heading">Something went wrong</h1>
+      <p class="success-sub">${msg}</p>
+      <div class="success-actions">
+        <a href="./account.html?tab=orders" class="btn-primary">Check my orders</a>
+        <a href="./checkout.html" class="btn-secondary">Try again</a>
+      </div>
+    `;
+  }
+
+  verify();
+</script>
+
+</body>
+</html>

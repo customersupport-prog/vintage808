@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — Vintage808</title>
+  <meta name="description" content="Frequently asked questions about Vintage808 — orders, shipping, returns, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <style>
+    :root {
+      --black: #111111; --white: #ffffff; --sand: #ede9e3; --sand2: #f7f5f2;
+      --mid: #999186; --accent: #d4006b;
+      --font-display: 'DM Serif Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--sand2); color: var(--black); -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .legal-hero { background: var(--black); padding: 72px 40px 56px; text-align: center; }
+    .legal-hero-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--mid); margin-bottom: 14px; }
+    .legal-hero h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 400; color: var(--white); letter-spacing: -.02em; }
+    .legal-hero-sub { margin-top: 14px; font-size: 13px; color: var(--mid); }
+
+    /* Body */
+    .legal-body { max-width: 760px; margin: 0 auto; padding: 64px 24px 100px; }
+
+    /* Category label */
+    .faq-category { font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; margin-top: 56px; }
+    .faq-category:first-of-type { margin-top: 0; }
+
+    .faq-category-title { font-family: var(--font-display); font-size: clamp(20px, 3vw, 26px); font-weight: 400; letter-spacing: -.01em; color: var(--black); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #e8e4de; }
+
+    /* Accordion */
+    .faq-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 8px; }
+    .faq-item { border-bottom: 1px solid #e8e4de; }
+    .faq-item:first-child { border-top: none; }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.5;
+      transition: color .2s;
+    }
+    .faq-question:hover { color: var(--accent); }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid currentColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .3s ease, background .2s, border-color .2s;
+      color: var(--mid);
+    }
+    .faq-question:hover .faq-icon { color: var(--accent); }
+    .faq-item.open .faq-icon { background: var(--accent); border-color: var(--accent); color: var(--white); transform: rotate(45deg); }
+
+    .faq-icon svg { display: block; }
+
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .35s ease, padding .25s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 600px; }
+    .faq-answer-inner { padding-bottom: 20px; }
+    .faq-answer-inner p { font-size: 14px; line-height: 1.85; color: #444; margin-bottom: 10px; }
+    .faq-answer-inner p:last-child { margin-bottom: 0; }
+    .faq-answer-inner ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+    .faq-answer-inner li { font-size: 14px; line-height: 1.75; color: #444; }
+    .faq-answer-inner a { color: var(--accent); }
+
+    /* Highlight */
+    .legal-highlight { background: var(--white); border: 1px solid #e8e4de; border-left: 4px solid var(--accent); border-radius: 4px; padding: 18px 20px; margin: 16px 0 0; }
+    .legal-highlight p { margin: 0 !important; font-size: 13px; line-height: 1.75; color: #444; }
+    .legal-highlight strong { color: var(--black); }
+
+    /* Divider */
+    .legal-divider { height: 1px; background: #e8e4de; margin: 52px 0; }
+
+    /* Contact card */
+    .legal-contact-card { background: var(--black); color: var(--white); border-radius: 6px; padding: 32px 36px; margin-top: 52px; }
+    .legal-contact-card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+    .legal-contact-card p { font-size: 14px; color: #aaa; line-height: 1.8; margin-bottom: 0; }
+    .legal-contact-card a { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .legal-hero { padding: 48px 20px 40px; }
+      .legal-body { padding: 40px 16px 72px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <a href="./index.html" class="nav-logo"><img src="./assets/logos/logo.png" alt="Vintage808" /></a>
+  <ul class="nav-links">
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-icons">
+      <div class="cart-wrap">
+        <button class="nav-icon-btn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </button>
+        <span class="cart-badge" style="display:none;">0</span>
+      </div>
+      <button class="nav-icon-btn" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </button>
+    </div>
+    <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<!-- ── Mobile Drawer ── -->
+<div class="nav-drawer" aria-hidden="true">
+  <ul class="nav-drawer-links">
+     <li><a href="./index.html">Home</a></li>
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./account.html">Account</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+ <div class="nav-drawer-bottom">
+  <div class="nav-drawer-icons">
+    <button class="nav-drawer-icon-btn" aria-label="Cart">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Cart <span class="drawer-badge" style="display:none;">0</span>
+    </button>
+    <button class="nav-drawer-icon-btn" aria-label="Account">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Account
+    </button>
+  </div>
+
+  <!-- Sign out — only shown when logged in -->
+  <button id="drawer-logout-btn" style="display:none;width:100%;margin:12px 0 4px;padding:11px 16px;background:none;border:1px solid #e8e4de;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#111;cursor:pointer;text-align:left;gap:8px;align-items:center;">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    Sign out
+  </button>
+
+
+</div>
+</div>
+
+<!-- Cart Overlay -->
+<div id="cart-overlay"></div>
+
+<!-- Cart Drawer -->
+<aside id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h2 class="cart-drawer-title">Your cart</h2>
+    <button id="cart-drawer-close" aria-label="Close cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body">
+    <div class="cart-empty"><p>Your cart is empty</p></div>
+  </div>
+  <div class="cart-drawer-footer" id="cart-drawer-footer" style="display:none;">
+    <div class="cart-drawer-subtotal">
+      <span>Subtotal</span>
+      <span id="cart-drawer-total">R0.00</span>
+    </div>
+    <p class="cart-shipping-note">Shipping calculated at checkout</p>
+    <a href="./checkout.html" class="btn-checkout">Checkout</a>
+  </div>
+</aside>
+
+<!-- ── Hero ── -->
+<div class="legal-hero">
+  <div class="legal-hero-eyebrow">Vintage808 · Help</div>
+  <h1>Frequently Asked Questions</h1>
+  <p class="legal-hero-sub">Can't find what you're looking for? <a href="./contact.html" style="color:var(--accent);">Contact us</a></p>
+</div>
+
+<div class="legal-body">
+
+  <!-- ORDERS -->
+  <div class="faq-category">01 — Orders</div>
+  <div class="faq-category-title">Orders &amp; Payments</div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        How do I place an order?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Browse our <a href="./shop.html">shop</a>, select your size and add items to your cart. When you're ready, click the cart icon and proceed to checkout. You can check out as a guest or create an account for faster future orders and order tracking.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        What payment methods do you accept?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>We accept the following payment methods via PayFast, our secure payment partner:</p>
+          <ul>
+            <li>Credit and debit cards (Visa, Mastercard)</li>
+            <li>Instant EFT</li>
+            <li>SnapScan</li>
+            <li>Zapper</li>
+            <li>Mobicred</li>
+          </ul>
+          <p>Your card details are never stored on our servers. All payments are processed securely by PayFast.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        Can I change or cancel my order after placing it?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>We begin processing orders quickly, so changes or cancellations must be requested within <strong>1 hour</strong> of placing your order. Contact us immediately at <a href="mailto:customersupport@vintage808info.com">customersupport@vintage808info.com</a> with your order number.</p>
+          <p>Once an order has been dispatched, it can no longer be cancelled. You are welcome to return it once received in accordance with our <a href="./returns.html">Returns Policy</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        I didn't receive an order confirmation email. What should I do?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Please check your spam or junk folder first — confirmation emails sometimes end up there. If you still can't find it, contact us at <a href="mailto:customersupport@vintage808info.com">customersupport@vintage808info.com</a> with the email address used at checkout and we'll confirm your order status.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SHIPPING -->
+  <div class="faq-category">02 — Shipping</div>
+  <div class="faq-category-title">Shipping &amp; Delivery</div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        How long does delivery take?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Standard door-to-door delivery to major centres takes <strong>2 – 4 business days</strong> from dispatch. Outlying and rural areas may take <strong>3 – 6 business days</strong>. Pargo Click &amp; Collect points are also 2 – 4 business days.</p>
+          <p>For full details, see our <a href="./shipping.html">Shipping &amp; Delivery</a> page.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        Do you offer free shipping?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Yes! All orders over <strong>R800</strong> qualify for free standard shipping anywhere in South Africa. The discount is applied automatically at checkout.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        How do I track my order?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Once your order is dispatched, you'll receive an email with your waybill number and a tracking link. You can also track your order from the <strong>My Orders</strong> section of your <a href="./account.html">account page</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        Do you ship internationally?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Not yet — we currently ship within South Africa only. We hope to expand internationally in the future. Follow us on social media to stay updated.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RETURNS -->
+  <div class="faq-category">03 — Returns</div>
+  <div class="faq-category-title">Returns &amp; Exchanges</div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        What is your return policy?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>We accept returns within <strong>14 days</strong> of delivery, provided items are unworn, unwashed, and in original condition with all tags attached. For full details, please read our <a href="./returns.html">Returns Policy</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        How do I initiate a return or exchange?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Email us at <a href="mailto:customersupport@vintage808info.com">customersupport@vintage808info.com</a> with your order number and the reason for the return. Our team will guide you through the process and provide a return address.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        I received a wrong or damaged item. What do I do?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>We're sorry to hear that! Please contact us within <strong>48 hours</strong> of receiving your order at <a href="mailto:customersupport@vintage808info.com">customersupport@vintage808info.com</a>. Include your order number and clear photos of the item and packaging. We'll arrange a replacement or full refund at no cost to you.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="faq-category">04 — Products</div>
+  <div class="faq-category-title">Products &amp; Sizing</div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        How do I find my size?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Each product page includes a size guide with measurements. We recommend measuring yourself and comparing to the size chart rather than going by your usual label size, as fits can vary between styles.</p>
+          <p>If you're between sizes, we generally recommend sizing up for a more relaxed fit.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        How do I care for my Vintage808 garments?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Always follow the care label instructions on the garment. As a general guide for our pieces:</p>
+          <ul>
+            <li>Machine wash cold (30°C) on a gentle cycle</li>
+            <li>Turn garments inside out to preserve print quality</li>
+            <li>Do not tumble dry — air dry flat or hang</li>
+            <li>Do not iron directly on printed areas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        Will out-of-stock items be restocked?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Some items are limited runs and may not be restocked. Follow us on Instagram and X to be the first to know about restocks and new drops. You can also contact us to be added to a waitlist for specific items.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ACCOUNT -->
+  <div class="faq-category">05 — Account</div>
+  <div class="faq-category-title">Account &amp; Privacy</div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        Do I need an account to shop?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>No — you can check out as a guest. However, creating a free account lets you track orders, view order history, and check out faster in the future.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        How do I reset my password?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>On the login page, click <strong>"Forgot password?"</strong> and enter your email address. You'll receive a reset link within a few minutes. Check your spam folder if it doesn't arrive.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        How do I request deletion of my account and data?
+        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></span>
+      </button>
+      <div class="faq-answer" aria-hidden="true">
+        <div class="faq-answer-inner">
+          <p>Email us at <a href="mailto:customersupport@vintage808info.com">customersupport@vintage808info.com</a> with the subject line <strong>"POPIA Data Request"</strong> and we will process your deletion request within 30 days. Note that some order records may be retained for legal compliance purposes. See our <a href="./privacy.html">Privacy Policy</a> for more information.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="legal-divider"></div>
+
+  <div class="legal-contact-card">
+    <h3>Still have questions?</h3>
+    <p>
+      We're happy to help. Reach our support team at <a href="mailto:customersupport@vintage808info.com">customersupport@vintage808info.com</a> and we'll get back to you within 1 business day.<br/><br/>
+      You can also use our <a href="./contact.html">contact form</a> — just leave your details and we'll be in touch.
+    </p>
+  </div>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="./shop.html">All items</a></li>
+        <li><a href="./shop.html">T-shirt</a></li>
+        <li><a href="./shop.html">Shorts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Company</p>
+      <ul class="footer-links">
+        
+        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./contact.html">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Help</p>
+      <ul class="footer-links">
+        <li><a href="./faq.html">FAQ</a></li>
+        <li><a href="./shipping.html">Shipping info</a></li>
+        <li><a href="#">Size guide</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Legal</p>
+      <ul class="footer-links">
+        <li><a href="./privacy.html">Privacy policy</a></li>
+        <li><a href="./terms.html">Terms policy</a></li>
+        <li><a href="#">Cookie policy</a></li>
+        <li><a href="./returns.html">Returns</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Follow Us</p>
+      <ul class="social-links">
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>Facebook</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>Instagram</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>X</a></li>
+      </ul>
+    </div>
+  </div>
+
+<!-- ── Business registration (compliance) ── -->
+<div class="footer-legal-strip">
+  <p>
+    Vintage 808 (Pty) Ltd &nbsp;·&nbsp;
+    Registration No. <strong>2026/226981/07</strong> &nbsp;·&nbsp;
+    Tax No. <strong>9260034286</strong> &nbsp;·&nbsp;
+
+  </p>
+</div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Vintage808. All rights reserved.</span>
+    <span>Made in South Africa 🇿🇦</span>
+  </div>
+</footer>
+
+<script type="module" src="./js/main.js"></script>
+<script>
+  // Accordion logic
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        el.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+      });
+      // Open clicked (if it wasn't already open)
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        item.querySelector('.faq-answer').setAttribute('aria-hidden', 'false');
+      }
+    });
+  });
+</script>
+</body>
+</html>

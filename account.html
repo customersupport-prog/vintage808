@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Account — Vintage808</title>
+<meta name="description" content="Manage your Vintage808 orders and profile." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/pages/account/account.css" />
+  <link rel="stylesheet" href="./css/pages/account/sidebar.css">
+  <link rel="stylesheet" href="./css/pages/account/breadcrumb.css">
+</head>
+<body data-page="account">
+
+<!-- ── Navigation ── -->
+<nav>
+  <a href="./index.html" class="nav-logo"><img src="./assets/logos/logo.png" alt="Vintage808" /></a>
+  <ul class="nav-links">
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-icons">
+      <div class="cart-wrap">
+        <button class="nav-icon-btn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </button>
+        <span class="cart-badge" style="display:none;">0</span>
+      </div>
+      <button class="nav-icon-btn" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </button>
+    </div>
+    <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Mobile Drawer ── -->
+<div class="nav-drawer" aria-hidden="true">
+  <ul class="nav-drawer-links">
+     <li><a href="./index.html">Home</a></li>
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./account.html">Account</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+ <div class="nav-drawer-bottom">
+  <div class="nav-drawer-icons">
+    <button class="nav-drawer-icon-btn" aria-label="Cart">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Cart <span class="drawer-badge" style="display:none;">0</span>
+    </button>
+    <button class="nav-drawer-icon-btn" aria-label="Account">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Account
+    </button>
+  </div>
+
+  <!-- Sign out — only shown when logged in -->
+  <button id="drawer-logout-btn" style="display:none;width:100%;margin:12px 0 4px;padding:11px 16px;background:none;border:1px solid #e8e4de;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#111;cursor:pointer;text-align:left;gap:8px;align-items:center;">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    Sign out
+  </button>
+
+
+</div>
+</div>
+
+<!-- Cart Overlay -->
+<div id="cart-overlay"></div>
+
+<!-- Cart Drawer -->
+<aside id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h2 class="cart-drawer-title">Your cart</h2>
+    <button id="cart-drawer-close" aria-label="Close cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body">
+    <div class="cart-empty"><p>Your cart is empty</p></div>
+  </div>
+  <div class="cart-drawer-footer" id="cart-drawer-footer" style="display:none;">
+    <div class="cart-drawer-subtotal">
+      <span>Subtotal</span>
+      <span id="cart-drawer-total">R0.00</span>
+    </div>
+    <p class="cart-shipping-note">Shipping calculated at checkout</p>
+    <a href="./checkout.html" class="btn-checkout">Checkout</a>
+  </div>
+</aside>
+<!-- ── Account Page ── -->
+<main class="account-page">
+
+  <div class="account-breadcrumb">
+    <a href="#" class="account-breadcrumb-home">My Account</a>
+    <span class="account-breadcrumb-sep">/</span>
+    <span class="account-breadcrumb-current" id="breadcrumb-current">Dashboard</span>
+  </div>
+
+  <div class="account-container">
+
+    <!-- ══ SIDEBAR ══ -->
+    <aside class="account-sidebar">
+
+      <div class="account-avatar">
+        <div class="avatar-circle" id="avatar-initials">--</div>
+        <div class="avatar-info">
+          <div class="avatar-name"  id="avatar-name">Loading…</div>
+          <div class="avatar-email" id="avatar-email"></div>
+        </div>
+      </div>
+
+      <button class="account-nav-item active" data-tab="profile">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Profile
+      </button>
+      <button class="account-nav-item" data-tab="orders">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <path d="M8 21h8M12 17v4"/>
+        </svg>
+        Orders
+      </button>
+
+
+      <button class="account-logout" id="logout-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Log out
+      </button>
+
+    </aside>
+
+    <!-- ══ CONTENT ══ -->
+    <div class="account-content">
+
+      <!-- PROFILE TAB -->
+      <div id="tab-profile" class="account-tab active">
+        <h1 class="account-heading">Dashboard</h1>
+
+        <!-- View mode -->
+        <div id="profile-view">
+          <div class="dashboard-grid">
+
+            <div class="account-card">
+              <div class="card-header">
+                <span class="card-title">Personal Information</span>
+                <button class="card-action" id="edit-profile-btn">Edit</button>
+              </div>
+              <div class="card-body">
+                <div class="profile-row">
+                  <span class="profile-key">Name</span>
+                  <span class="profile-val" id="profile-name-display">—</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-key">Email</span>
+                  <span class="profile-val" id="profile-email-display">—</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-key">Phone</span>
+                  <span class="profile-val" id="profile-phone-display">—</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-key">Member Since</span>
+                  <span class="profile-val" id="profile-since-display">—</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="account-hero-card">
+              <img src="./assets/images/hero.jpg" alt="Vintage808" onerror="this.style.display='none'" />
+              <div class="account-hero-card-content">
+                <div class="account-hero-card-label">Est. 2024</div>
+                <div class="account-hero-card-title">Vintage808</div>
+              </div>
+            </div>
+
+            <div class="account-card dashboard-grid--wide">
+              <div class="card-header">
+                <span class="card-title">Recent Orders</span>
+                <button class="card-action" id="view-all-orders-btn">View All</button>
+              </div>
+              <div id="dashboard-orders-list">
+                <div style="padding:20px;font-size:13px;color:var(--acc-mid);">Loading orders…</div>
+              </div>
+              <button class="card-footer-link" id="dashboard-orders-footer-btn">
+                View all orders
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+
+    
+
+            <div class="account-card">
+              <div class="card-header">
+                <span class="card-title">Account Stats</span>
+              </div>
+              <div class="card-body">
+                <div class="profile-row">
+                  <span class="profile-key">Total Orders</span>
+                  <span class="profile-val" id="stat-total-orders">—</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-key">Total Spent</span>
+                  <span class="profile-val" id="stat-total-spent">—</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-key">Last Order</span>
+                  <span class="profile-val" id="stat-last-order">—</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Edit mode -->
+        <div id="profile-edit" class="hidden">
+          <div class="account-success hidden" id="save-success">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Profile updated successfully.
+          </div>
+          <div class="account-error hidden" id="save-error">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            <span id="save-error-msg">Something went wrong.</span>
+          </div>
+          <div class="account-card">
+            <div class="card-header"><span class="card-title">Edit Profile</span></div>
+            <div class="edit-section-label">Personal Info</div>
+            <div class="edit-fields">
+              <div class="edit-field">
+                <label class="edit-label" for="edit-first-name">First Name</label>
+                <input class="edit-input" id="edit-first-name" type="text" placeholder="First name" />
+              </div>
+              <div class="edit-field">
+                <label class="edit-label" for="edit-last-name">Last Name</label>
+                <input class="edit-input" id="edit-last-name" type="text" placeholder="Last name" />
+              </div>
+              <div class="edit-field edit-field--full">
+                <label class="edit-label" for="edit-email">Email</label>
+                <input class="edit-input" id="edit-email" type="email" placeholder="your@email.com" />
+              </div>
+            </div>
+            <div class="edit-section-label">Change Password</div>
+            <div class="edit-fields">
+              <div class="edit-field edit-field--full">
+                <label class="edit-label" for="edit-current-pw">Current Password</label>
+                <input class="edit-input" id="edit-current-pw" type="password" placeholder="••••••••" />
+              </div>
+              <div class="edit-field">
+                <label class="edit-label" for="edit-new-pw">New Password</label>
+                <input class="edit-input" id="edit-new-pw" type="password" placeholder="••••••••" />
+              </div>
+              <div class="edit-field">
+                <label class="edit-label" for="edit-confirm-pw">Confirm Password</label>
+                <input class="edit-input" id="edit-confirm-pw" type="password" placeholder="••••••••" />
+              </div>
+            </div>
+          </div>
+          <div class="edit-actions" style="margin-top:16px;">
+            <button class="account-btn-primary" id="save-profile-btn">
+              <svg class="account-spinner hidden" id="save-spinner" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" opacity="0.25"/>
+                <path d="M21 12a9 9 0 00-9-9"/>
+              </svg>
+              Save Changes
+            </button>
+            <button class="account-btn-secondary" id="cancel-edit-btn">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDERS TAB -->
+      <div id="tab-orders" class="account-tab">
+        <h1 class="account-heading">Orders</h1>
+        <div id="orders-list">
+          <div class="order-card" style="pointer-events:none;opacity:.4;">
+            <div class="order-card-header">
+              <div style="width:140px;height:12px;background:var(--acc-sand);border-radius:3px;"></div>
+              <div style="width:70px;height:20px;background:var(--acc-sand);border-radius:20px;"></div>
+            </div>
+            <div style="padding:16px 20px;display:flex;gap:8px;">
+              <div style="width:52px;height:60px;background:var(--acc-sand);border-radius:2px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  >
+
+      <!-- RETURNS TAB -->
+      <div id="tab-returns" class="account-tab">
+        <h1 class="account-heading">Returns</h1>
+        <div id="returns-list"></div>
+      </div>
+
+    </div><!-- /.account-content -->
+  </div><!-- /.account-container -->
+
+  <!-- ══ MOBILE BOTTOM TAB BAR ══ -->
+ <nav class="account-mobile-tabs" id="mobile-tab-bar">
+  <button class="account-mobile-tab active" data-tab="profile">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Profile
+  </button>
+  <button class="account-mobile-tab" data-tab="orders">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    Orders
+  </button>
+  <button class="account-mobile-tab" id="mobile-logout-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    Sign out
+  </button>
+</nav>
+
+</main>
+<!-- ── Order Detail Modal ── -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+  <div class="order-modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-order-id"   id="modal-order-id">—</div>
+        <div class="modal-order-date" id="modal-order-date">—</div>
+      </div>
+      <button class="modal-close" id="modal-close-btn" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+<!-- ── Newsletter ── -->
+<section class="newsletter">
+  <div>
+    <h3 class="newsletter-heading">Stay in the loop</h3>
+    <p class="newsletter-sub">Get updates on new drops and exclusive offers</p>
+  </div>
+  <div class="newsletter-form">
+    <div class="newsletter-row">
+      <input type="email" class="newsletter-input" placeholder="Your email" />
+      <button class="btn-subscribe">Subscribe</button>
+    </div>
+    <p class="newsletter-note">We respect your privacy. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="./shop.html">All items</a></li>
+        <li><a href="./shop.html">T-shirt</a></li>
+        <li><a href="./shop.html">Shorts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Company</p>
+      <ul class="footer-links">
+        
+        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./contact.html">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Help</p>
+      <ul class="footer-links">
+        <li><a href="./faq.html">FAQ</a></li>
+        <li><a href="./shipping.html">Shipping info</a></li>
+        <li><a href="#">Size guide</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Legal</p>
+      <ul class="footer-links">
+        <li><a href="./privacy.html">Privacy policy</a></li>
+        <li><a href="./terms.html">Terms policy</a></li>
+        <li><a href="#">Cookie policy</a></li>
+        <li><a href="./returns.html">Returns</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Follow Us</p>
+      <ul class="social-links">
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>Facebook</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>Instagram</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>X</a></li>
+      </ul>
+    </div>
+  </div>
+
+<!-- ── Business registration (compliance) ── -->
+<div class="footer-legal-strip">
+  <p>
+    Vintage 808 (Pty) Ltd &nbsp;·&nbsp;
+    Registration No. <strong>2026/226981/07</strong> &nbsp;·&nbsp;
+    Tax No. <strong>9260034286</strong> &nbsp;·&nbsp;
+
+  </p>
+</div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Vintage808. All rights reserved.</span>
+    <span>Made in South Africa 🇿🇦</span>
+  </div>
+</footer>
+<script src="./js/pages/account.js"></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

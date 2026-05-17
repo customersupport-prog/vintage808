@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Checkout — Vintage808</title>
+<meta name="description" content="Secure checkout for your Vintage808 order." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/pages/checkout.css" />
+</head>
+<body data-page="checkout">
+<!-- ── Navigation ── -->
+<nav>
+  <a href="./index.html" class="nav-logo"><img src="./assets/logos/logo.png" alt="Vintage808" /></a>
+  <ul class="nav-links">
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-icons">
+      <div class="cart-wrap">
+        <button class="nav-icon-btn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </button>
+        <span class="cart-badge" style="display:none;">0</span>
+      </div>
+      <button class="nav-icon-btn" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </button>
+    </div>
+    <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<!-- ── Mobile Drawer ── -->
+<div class="nav-drawer" aria-hidden="true">
+  <ul class="nav-drawer-links">
+     <li><a href="./index.html">Home</a></li>
+    <li><a href="./shop.html">Shop</a></li>
+    <li><a href="./account.html">Account</a></li>
+    <li><a href="./contact.html">Contact</a></li>
+  </ul>
+ <div class="nav-drawer-bottom">
+  <div class="nav-drawer-icons">
+    <button class="nav-drawer-icon-btn" aria-label="Cart">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Cart <span class="drawer-badge" style="display:none;">0</span>
+    </button>
+    <button class="nav-drawer-icon-btn" aria-label="Account">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Account
+    </button>
+  </div>
+
+  <!-- Sign out — only shown when logged in -->
+  <button id="drawer-logout-btn" style="display:none;width:100%;margin:12px 0 4px;padding:11px 16px;background:none;border:1px solid #e8e4de;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#111;cursor:pointer;text-align:left;gap:8px;align-items:center;">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    Sign out
+  </button>
+
+
+</div>
+</div>
+
+<!-- Cart Overlay -->
+<div id="cart-overlay"></div>
+
+<!-- Cart Drawer -->
+<aside id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h2 class="cart-drawer-title">Your cart</h2>
+    <button id="cart-drawer-close" aria-label="Close cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body">
+    <div class="cart-empty"><p>Your cart is empty</p></div>
+  </div>
+  <div class="cart-drawer-footer" id="cart-drawer-footer" style="display:none;">
+    <div class="cart-drawer-subtotal">
+      <span>Subtotal</span>
+      <span id="cart-drawer-total">R0.00</span>
+    </div>
+    <p class="cart-shipping-note">Shipping calculated at checkout</p>
+    <a href="./checkout.html" class="btn-checkout">Checkout</a>
+  </div>
+</aside>
+
+<!-- ── Checkout ── -->
+<main class="checkout-page">
+  <div class="checkout-container">
+
+    <!-- Left: Form -->
+    <section class="checkout-left">
+
+      <p class="checkout-breadcrumb">
+        <a href="./shop.html">Shop</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Checkout</span>
+      </p>
+
+      <p class="checkout-eyebrow">Almost there</p>
+      <h1 class="checkout-heading">Checkout</h1>
+
+      <!-- Contact -->
+      <div class="checkout-section">
+        <p class="checkout-section-label">Contact</p>
+        <div class="checkout-fields">
+          <div class="checkout-field checkout-field--full">
+            <label class="checkout-label" for="full-name">Full name</label>
+            <input class="checkout-input" type="text" id="full-name" placeholder="John Doe" autocomplete="name" />
+          </div>
+          <div class="checkout-field">
+            <label class="checkout-label" for="email">Email</label>
+            <input class="checkout-input" type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div class="checkout-field">
+            <label class="checkout-label" for="phone">Phone</label>
+            <input class="checkout-input" type="tel" id="phone" placeholder="082 000 0000" autocomplete="tel" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Shipping -->
+      <div class="checkout-section">
+        <p class="checkout-section-label">Shipping address</p>
+        <div class="checkout-fields">
+          <div class="checkout-field checkout-field--full">
+            <label class="checkout-label" for="street">Street address</label>
+            <input class="checkout-input" type="text" id="street" placeholder="12 Main Road" autocomplete="street-address" />
+          </div>
+          <div class="checkout-field">
+            <label class="checkout-label" for="city">City</label>
+            <input class="checkout-input" type="text" id="city" placeholder="Pretoria" autocomplete="address-level2" />
+          </div>
+          <div class="checkout-field">
+            <label class="checkout-label" for="province">Province</label>
+            <select class="checkout-input checkout-select" id="province">
+              <option value="" disabled selected>Select province</option>
+              <option>Gauteng</option>
+              <option>Western Cape</option>
+              <option>KwaZulu-Natal</option>
+              <option>Eastern Cape</option>
+              <option>Limpopo</option>
+              <option>Mpumalanga</option>
+              <option>North West</option>
+              <option>Free State</option>
+              <option>Northern Cape</option>
+            </select>
+          </div>
+          <div class="checkout-field">
+            <label class="checkout-label" for="postal">Postal code</label>
+            <input class="checkout-input" type="text" id="postal" placeholder="0001" autocomplete="postal-code" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="checkout-error" id="checkout-error" style="display:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="checkout-error-msg">Please fill in all fields.</span>
+      </div>
+
+      <!-- Pay Button -->
+      <button class="checkout-pay-btn" id="pay-btn">
+        <span id="pay-btn-text">Place order</span>
+        <span id="pay-btn-loader" style="display:none;">
+          <svg class="checkout-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </span>
+      </button>
+
+      <p class="checkout-secure">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Secure checkout — your information is safe
+      </p>
+
+    </section>
+
+    <!-- Right: Summary -->
+    <aside class="checkout-summary">
+
+      <div class="summary-header">
+        <p class="summary-label">Order summary</p>
+      </div>
+
+      <div class="summary-items" id="summary-items"></div>
+
+      <div class="summary-empty" id="summary-empty" style="display:none;">
+        <p>Your cart is empty. <a href="./shop.html">Go shop</a></p>
+      </div>
+
+      <div class="summary-totals">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="summary-subtotal">R0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span id="summary-shipping">R150.00</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row summary-row--total">
+          <span>Total</span>
+          <span id="summary-total">R0.00</span>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="./shop.html">All items</a></li>
+        <li><a href="./shop.html">T-shirt</a></li>
+        <li><a href="./shop.html">Shorts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Company</p>
+      <ul class="footer-links">
+        
+        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./contact.html">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Help</p>
+      <ul class="footer-links">
+        <li><a href="./faq.html">FAQ</a></li>
+        <li><a href="./shipping.html">Shipping info</a></li>
+        <li><a href="#">Size guide</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Legal</p>
+      <ul class="footer-links">
+        <li><a href="./privacy.html">Privacy policy</a></li>
+        <li><a href="./terms.html">Terms policy</a></li>
+        <li><a href="#">Cookie policy</a></li>
+        <li><a href="./returns.html">Returns</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Follow Us</p>
+      <ul class="social-links">
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>Facebook</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>Instagram</a></li>
+        <li><a href="#" class="social-link"><span class="social-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>X</a></li>
+      </ul>
+    </div>
+  </div>
+
+<!-- ── Business registration (compliance) ── -->
+<div class="footer-legal-strip">
+  <p>
+    Vintage 808 (Pty) Ltd &nbsp;·&nbsp;
+    Registration No. <strong>2026/226981/07</strong> &nbsp;·&nbsp;
+    Tax No. <strong>9260034286</strong> &nbsp;·&nbsp;
+
+  </p>
+</div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Vintage808. All rights reserved.</span>
+    <span>Made in South Africa 🇿🇦</span>
+  </div>
+</footer>
+<script type="module" src="./js/main.js" defer></script>
+</body>
+</html>

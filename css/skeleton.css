@@ -1,0 +1,51 @@
+/* ============================================================
+   Skeleton loading — add to components.css or import separately
+   ============================================================ */
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--sand, #ede9e3) 25%,
+    #e0dbd4              50%,
+    var(--sand, #ede9e3) 75%
+  );
+  background-size: 600px 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: 2px;
+}
+
+/* ── Skeleton product card ── */
+.product-card-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  margin-bottom: 12px;
+}
+
+.skeleton-name {
+  height: 14px;
+  width: 70%;
+  margin-bottom: 8px;
+}
+
+.skeleton-price {
+  height: 13px;
+  width: 35%;
+  margin-bottom: 16px;
+}
+
+.skeleton-btn {
+  height: 40px;
+  width: 100%;
+  margin-top: auto;
+}

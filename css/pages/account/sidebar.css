@@ -1,0 +1,301 @@
+/* ============================================================
+   sidebar.css — Vintage808 account page
+   Desktop: sticky vertical column
+   Mobile:  avatar full-width + 2×2 nav grid + full-width logout
+   ============================================================ */
+
+/* ── Sidebar shell ── */
+.account-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: sticky;
+  top: 88px;
+  height: fit-content;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Avatar ── */
+.account-avatar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  background: var(--acc-white);
+  border: 1px solid var(--acc-sand);
+  border-radius: var(--acc-radius) var(--acc-radius) 0 0;
+  border-bottom: none;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.avatar-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--acc-black);
+  color: var(--acc-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display, 'Archivo Black', sans-serif);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.avatar-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.avatar-name {
+  font-family: var(--font-display, 'Archivo Black', sans-serif);
+  font-size: 14px;
+  color: var(--acc-black);
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.avatar-email {
+  font-size: 11px;
+  color: var(--acc-mid);
+  margin-top: 2px;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+/* ── Nav wrapper — desktop: vertical column ── */
+.account-nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ── Nav buttons ── */
+.account-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  background: var(--acc-white);
+  border: 1px solid var(--acc-sand);
+  border-top: none;
+  border-radius: 0;
+  font-family: var(--font-body, 'Archivo', sans-serif);
+  font-size: 13px;
+  color: var(--acc-mid);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.account-nav-item:last-child {
+  border-radius: 0 0 var(--acc-radius) var(--acc-radius);
+}
+
+.account-nav-item svg {
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+
+.account-nav-item:hover {
+  color: var(--acc-black);
+  background: var(--acc-bg);
+}
+
+.account-nav-item:hover svg { opacity: 1; }
+
+.account-nav-item.active {
+  background: var(--acc-black);
+  color: var(--acc-white);
+  border-color: var(--acc-black);
+}
+
+.account-nav-item.active svg { opacity: 1; }
+
+.account-nav-item:focus-visible {
+  outline: 2px solid var(--acc-black);
+  outline-offset: -2px;
+}
+
+/* ── Logout ── */
+.account-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  margin-top: 6px;
+  background: transparent;
+  border: 1px solid var(--acc-sand);
+  border-radius: var(--acc-radius);
+  font-family: var(--font-body, 'Archivo', sans-serif);
+  font-size: 13px;
+  color: var(--acc-red);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.account-logout svg { flex-shrink: 0; opacity: 0.8; }
+
+.account-logout:hover {
+  background: var(--acc-red-bg);
+  border-color: #fecaca;
+}
+
+.account-logout:focus-visible {
+  outline: 2px solid var(--acc-red);
+  outline-offset: 2px;
+}
+
+@media (max-width: 860px) {
+  .account-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .account-sidebar {
+    position: static;
+    width: 100%;
+  }
+
+  .account-avatar {
+    border-radius: var(--acc-radius) var(--acc-radius) 0 0;
+    border-bottom: none;
+  }
+
+  /* 3 items in one row */
+  .account-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--acc-sand);
+    border-top: none;
+    border-radius: 0 0 var(--acc-radius) var(--acc-radius);
+    overflow: hidden;
+  }
+
+  .account-nav-item {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 14px 8px;
+    font-size: 11px;
+    white-space: normal;
+    border: none;
+    border-right: 1px solid var(--acc-sand);
+    border-bottom: none;
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+
+  .account-nav-item:last-child {
+    border-right: none;
+    border-radius: 0;
+  }
+
+  .account-nav-item svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .account-logout {
+    width: 100%;
+    justify-content: center;
+    margin-top: 6px;
+    border-radius: var(--acc-radius);
+  }
+
+  .account-content {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .account-avatar { padding: 14px; gap: 10px; }
+  .avatar-circle  { width: 40px; height: 40px; font-size: 13px; }
+  .avatar-name    { font-size: 13px; }
+  .avatar-email   { font-size: 10px; }
+  .account-nav-item { padding: 12px 4px; font-size: 10px; }
+  .account-nav-item svg { width: 15px; height: 15px; }
+  .account-logout { padding: 11px 14px; font-size: 12px; }
+}
+
+@media (max-width: 768px) {
+
+  /* Hide desktop sidebar */
+  .account-sidebar {
+    display: none;
+  }
+
+  /* Stack layout */
+  .account-container {
+    display: block;
+    padding-bottom: 70px; /* room for tab bar */
+  }
+
+  /* Avatar at top of content instead */
+  .account-content::before {
+    content: '';
+  }
+
+  /* Bottom tab bar */
+  .account-mobile-tabs {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 58px;
+    background: var(--white);
+    border-top: 1px solid var(--sand);
+    z-index: 100;
+  }
+
+  .account-mobile-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+    transition: color 0.15s;
+  }
+
+  .account-mobile-tab.active {
+    color: var(--black);
+  }
+
+  .account-mobile-tab svg {
+    width: 18px; height: 18px;
+  }
+
+  .account-mobile-tab-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--black);
+    margin-top: 2px;
+  }
+}
+
+/* Hide tab bar on desktop */
+.account-mobile-tabs {
+  display: none;
+}
